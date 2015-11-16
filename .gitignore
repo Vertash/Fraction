@@ -1,0 +1,52 @@
+public class Fraction {
+  int n, d;
+
+  Fraction (int num, int den) {
+    n = num;
+    d = den;
+  }
+
+  void Simplify() {
+    int a, b, x;
+    a = Math.abs(n); b = d;
+    if (a < b) {x = a; a = b; b = x;}
+    while (b > 0) {
+      a = a % b;
+      x = a; a = b; b = x;
+    }
+    n = n / a;
+    d = d / a;
+  }
+
+  public String toString() {
+    return n + "/" + d;
+  }
+
+  public Fraction mul(Fraction x){
+    return new Fraction(n * x.n, d * x.d);
+  }
+
+  public Fraction div(Fraction x){
+    return new Fraction(n * x.d, d * x.n);
+  }
+
+  public Fraction sum(Fraction x){
+    return new Fraction(n * x.d + x.n * d, d * x.d);
+  }
+
+  public Fraction minus(Fraction x){
+     if (n * x.d < x.n * d) return true; else return false;
+  }
+  
+  public boolean equal(Fraction x){
+    if (n * x.d == x.n * d) return true; else return false;
+  }
+
+  public boolean bigger(Fraction x){
+    if (n * x.d > x.n * d) return true; else return false;
+  }
+
+  public boolean less(Fraction x){
+    if (n * x.d < x.n * d) return true; else return false;
+  }
+}
